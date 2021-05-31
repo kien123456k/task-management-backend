@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  api:
+    container_name: Task_Management
+    image: node:14.17-alpine
+    restart: always
+    command: >
+      sh -c "yarn &&
+            yarn start:dev"
+    ports:
+      - '5000:5000'
+    working_dir: /app
+    volumes:
+      - ../:/app
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: Postgres
+    image: postgres:13.3-alpine
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: task_management_database
+    ports:
+      - '15432:5432'
+    volumes:
+      - postgresql:/var/lib/postgresql/data/
+
+  pgadmin:
+    container_name: Postgres_Admin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'admin@admin.com'
+      PGADMIN_DEFAULT_PASSWORD: 'admin'
+    ports:
+      - '16543:80'
+    depends_on:
+      - postgres
+
+volumes:
+  postgresql:

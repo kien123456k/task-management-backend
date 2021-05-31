@@ -1,0 +1,9 @@
+node_modules
+dist
+config/development.yml
+config/production.yml
+.elasticbeanstalk
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
