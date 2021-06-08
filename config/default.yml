@@ -5,7 +5,7 @@ server:
 db:
   type: 'postgres'
   host: 'postgres'
-  database: 'task_management_database'
+  database: 'task_management'
   username: 'username'
   password: 'password'
   port: 5432
